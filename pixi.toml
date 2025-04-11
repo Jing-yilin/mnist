@@ -1,0 +1,74 @@
+[workspace]
+authors = ["Jing-Yilin <yilin.jing.ai@outlook.com>"]
+channels = ["conda-forge", "pytorch"]
+name = "mnist"
+platforms = ["win-64", "linux-64", "osx-64", "osx-arm64"]
+version = "0.1.0"
+
+[environments]
+default = { solve-group = "default" }
+experiment = { solve-group = "experiment" }
+reproduction = { solve-group = "reproduction" }
+
+[dependencies]
+python = ">=3.10,<3.13"
+pytorch = { version = ">=2.0.0", channel = "pytorch" }
+libjpeg-turbo = { version = ">=3.0.0", channel = "conda-forge" }
+libpng = { version = ">=1.6.0", channel = "conda-forge" }
+torchvision = { version = ">=0.16.0", channel = "pytorch" }
+mlflow = { version = ">=2.8.0", channel = "conda-forge" }
+protobuf = ">=3.19.0,<4.0.0"
+pillow = ">=10.0.0"
+numpy = ">=1.24.0"
+
+[tasks]
+prepare-data = "python scripts/download_data.py"
+clean-data = { cmd = "rm -rf data" }
+clean-results = { cmd = "rm -rf results" }
+clean-models = { cmd = "rm -rf models" }
+clean-all = { depends-on = ["clean-data", "clean-results", "clean-models"] }
+train = "python main.py --save-model"
+
+[tasks.update-data-hash]
+cmd = "python scripts/file_hash.py -m update -r -p \"*.gz\" data"
+depends-on = ["prepare-data"]
+
+[tasks.verify-data-hash]
+cmd = "python scripts/file_hash.py -m verify -r -p \"*.gz\" data"
+depends-on = ["prepare-data"]
+
+[tasks.update-model-hash]
+cmd = "python scripts/file_hash.py -m update -r models"
+depends-on = ["train"]
+
+[tasks.verify-model-hash]
+cmd = "python scripts/file_hash.py -m verify -r models"
+depends-on = ["train"]
+
+[tasks.update-result-hash]
+cmd = "python scripts/file_hash.py -m update -r results"
+depends-on = ["train"]
+
+[tasks.verify-result-hash]
+cmd = "python scripts/file_hash.py -m verify -r results"
+depends-on = ["train"]
+
+[feature.experiment.tasks]
+workflow = { depends-on = [
+    # "clean-all",
+    "prepare-data",
+    "update-data-hash",
+    "train",
+    "update-model-hash",
+    "update-result-hash",
+] }
+
+[feature.reproduction.tasks]
+workflow = { depends-on = [
+    # "clean-all",
+    "prepare-data",
+    "verify-data-hash",
+    "train",
+    "verify-model-hash",
+    "verify-result-hash",
+] }
