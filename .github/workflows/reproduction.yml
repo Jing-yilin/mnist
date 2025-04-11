@@ -1,0 +1,126 @@
+name: MNIST Model Reproduction
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  reproduction-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Pixi
+        uses: prefix-dev/setup-pixi@v0.4.0
+        with:
+          pixi-version: v0.16.1
+      
+      - name: Install dependencies
+        run: pixi install
+      
+      - name: Run reproduction task
+        run: pixi run reproduction
+      
+      - name: Upload reproduction status
+        run: |
+          echo "Linux reproduction completed successfully at $(date)" > linux_status.txt
+      
+      - name: Archive status
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: linux-reproduction-status
+          path: linux_status.txt
+          retention-days: 5
+
+  reproduction-macos:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Pixi
+        uses: prefix-dev/setup-pixi@v0.4.0
+        with:
+          pixi-version: v0.16.1
+      
+      - name: Install dependencies
+        run: pixi install
+      
+      - name: Run reproduction task
+        run: pixi run reproduction
+      
+      - name: Upload reproduction status
+        run: |
+          echo "macOS reproduction completed successfully at $(date)" > macos_status.txt
+      
+      - name: Archive status
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: macos-reproduction-status
+          path: macos_status.txt
+          retention-days: 5
+
+  reproduction-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Pixi
+        uses: prefix-dev/setup-pixi@v0.4.0
+        with:
+          pixi-version: v0.16.1
+      
+      - name: Install dependencies
+        run: pixi install
+      
+      - name: Run reproduction task
+        run: pixi run reproduction
+      
+      - name: Upload reproduction status
+        shell: bash
+        run: |
+          echo "Windows reproduction completed successfully at $(date)" > windows_status.txt
+      
+      - name: Archive status
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: windows-reproduction-status
+          path: windows_status.txt
+          retention-days: 5
+
+  reproduction-linux-cuda:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Pixi
+        uses: prefix-dev/setup-pixi@v0.4.0
+        with:
+          pixi-version: v0.16.1
+      
+      - name: Install dependencies with CUDA
+        run: pixi install --environment cuda
+      
+      - name: Run reproduction task with CUDA
+        run: pixi run --environment cuda reproduction
+      
+      - name: Upload reproduction status
+        run: |
+          echo "Linux CUDA reproduction completed successfully at $(date)" > linux_cuda_status.txt
+      
+      - name: Archive status
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: linux-cuda-reproduction-status
+          path: linux_cuda_status.txt
+          retention-days: 5 

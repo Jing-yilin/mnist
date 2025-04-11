@@ -1,0 +1,68 @@
+name: Reproduction Status Summary
+
+on:
+  workflow_run:
+    workflows: ["MNIST Model Reproduction"]
+    types:
+      - completed
+  workflow_dispatch:
+
+jobs:
+  summarize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Download all artifacts
+        uses: actions/download-artifact@v2
+        with:
+          path: artifacts
+      
+      - name: Display status summary
+        run: |
+          echo "# Reproduction Status Summary" > status_summary.md
+          echo "" >> status_summary.md
+          echo "| Platform | Status | Time |" >> status_summary.md
+          echo "|----------|--------|------|" >> status_summary.md
+          
+          # Linux status
+          if [ -f "artifacts/linux-reproduction-status/linux_status.txt" ]; then
+            LINUX_STATUS=$(cat artifacts/linux-reproduction-status/linux_status.txt)
+            echo "| Linux | ✅ Success | $(echo $LINUX_STATUS | cut -d ' ' -f 6-) |" >> status_summary.md
+          else
+            echo "| Linux | ❌ Failed | N/A |" >> status_summary.md
+          fi
+          
+          # macOS status
+          if [ -f "artifacts/macos-reproduction-status/macos_status.txt" ]; then
+            MACOS_STATUS=$(cat artifacts/macos-reproduction-status/macos_status.txt)
+            echo "| macOS | ✅ Success | $(echo $MACOS_STATUS | cut -d ' ' -f 6-) |" >> status_summary.md
+          else
+            echo "| macOS | ❌ Failed | N/A |" >> status_summary.md
+          fi
+          
+          # Windows status
+          if [ -f "artifacts/windows-reproduction-status/windows_status.txt" ]; then
+            WINDOWS_STATUS=$(cat artifacts/windows-reproduction-status/windows_status.txt)
+            echo "| Windows | ✅ Success | $(echo $WINDOWS_STATUS | cut -d ' ' -f 6-) |" >> status_summary.md
+          else
+            echo "| Windows | ❌ Failed | N/A |" >> status_summary.md
+          fi
+          
+          # Linux CUDA status
+          if [ -f "artifacts/linux-cuda-reproduction-status/linux_cuda_status.txt" ]; then
+            LINUX_CUDA_STATUS=$(cat artifacts/linux-cuda-reproduction-status/linux_cuda_status.txt)
+            echo "| Linux (CUDA) | ✅ Success | $(echo $LINUX_CUDA_STATUS | cut -d ' ' -f 6-) |" >> status_summary.md
+          else
+            echo "| Linux (CUDA) | ❌ Failed | N/A |" >> status_summary.md
+          fi
+          
+          cat status_summary.md
+      
+      - name: Create status summary artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: reproduction-status-summary
+          path: status_summary.md
+          retention-days: 30 
