@@ -2870,6 +2870,8 @@
     "epochs": 5,
     "learning_rate": 1.0,
     "gamma": 0.7,
-    "seed": 1
+    "seed": 1,
+    "environment": "default",
+    "cuda_available": false
   }
 }

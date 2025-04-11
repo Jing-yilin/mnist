@@ -15,12 +15,12 @@
     "hash": "f7ae60f92e00ec6debd23a6088c31dbd2371eca3ffa0defaefb259924204aec6",
     "algorithm": "sha256"
   },
-  "results/mnist_results.json": {
-    "hash": "84324f97fcd0d041e7a0726b00dd6ae174beb821e9b62dc935c1be07eaa06b58",
+  "models/default/mnist_cnn.pt": {
+    "hash": "22a608a5813fd071510303e4cd1486817e26ff390e088f8c81d2c8b7d685e722",
     "algorithm": "sha256"
   },
-  "models/mnist_cnn.pt": {
-    "hash": "22a608a5813fd071510303e4cd1486817e26ff390e088f8c81d2c8b7d685e722",
+  "results/default/mnist_results.json": {
+    "hash": "afa3e53c709f8b699178632f571892950bd991f21ecfb2cff316a57e6e1f209a",
     "algorithm": "sha256"
   }
 }

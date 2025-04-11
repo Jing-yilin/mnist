@@ -10,22 +10,25 @@ default = { solve-group = "default" }
 cuda = { solve-group = "cuda", features = ["cuda"] }
 
 [feature.cuda]
-dependencies = {cuda = ">=12.0", cudnn = ">=9.8.0"}
+dependencies = { cuda = ">=12.0", cudnn = ">=9.8.0" }
 platforms = ["win-64", "linux-64"]
-system-requirements = {cuda = "12"}
-channels = ["nvidia", {channel = "pytorch", priority = -1}] # Results in:  ["nvidia", "conda-forge", "pytorch"] when the default is `conda-forge`
+system-requirements = { cuda = "12" }
+channels = [
+    "nvidia",
+    { channel = "pytorch", priority = -1 },
+] # Results in:  ["nvidia", "conda-forge", "pytorch"] when the default is `conda-forge`
 
 
 [dependencies]
-python = ">=3.10,<3.13"
+python = { version = ">=3.10,<3.13", channel = "conda-forge" }
 pytorch = { version = ">=2.0.0", channel = "pytorch" }
 libjpeg-turbo = { version = ">=3.0.0", channel = "conda-forge" }
 libpng = { version = ">=1.6.0", channel = "conda-forge" }
 torchvision = { version = ">=0.16.0", channel = "pytorch" }
 mlflow = { version = ">=2.8.0", channel = "conda-forge" }
-protobuf = ">=3.19.0,<4.0.0"
-pillow = ">=10.0.0"
-numpy = ">=1.24.0"
+protobuf = { version = ">=3.19.0,<4.0.0", channel = "conda-forge" }
+pillow = { version = ">=10.0.0", channel = "conda-forge" }
+numpy = { version = ">=1.24.0", channel = "conda-forge" }
 
 [tasks]
 prepare-data = "python scripts/download_data.py"
@@ -33,7 +36,9 @@ clean-data = { cmd = "rm -rf data" }
 clean-results = { cmd = "rm -rf results" }
 clean-models = { cmd = "rm -rf models" }
 clean-all = { depends-on = ["clean-data", "clean-results", "clean-models"] }
-train = "python main.py --save-model"
+# Run with: pixi run train
+# Or with CUDA: pixi run --environment cuda train
+train = { cmd = "python main.py --save-model" }
 
 [tasks.update-data-hash]
 cmd = "python scripts/file_hash.py -m update -r -p \"*.gz\" data"
@@ -44,19 +49,19 @@ cmd = "python scripts/file_hash.py -m verify -r -p \"*.gz\" data"
 depends-on = ["prepare-data"]
 
 [tasks.update-model-hash]
-cmd = "python scripts/file_hash.py -m update -r models"
+cmd = "python scripts/file_hash.py -m update -r models/$PIXI_ENVIRONMENT_NAME"
 depends-on = ["train"]
 
 [tasks.verify-model-hash]
-cmd = "python scripts/file_hash.py -m verify -r models"
+cmd = "python scripts/file_hash.py -m verify -r models/$PIXI_ENVIRONMENT_NAME"
 depends-on = ["train"]
 
 [tasks.update-result-hash]
-cmd = "python scripts/file_hash.py -m update -r results"
+cmd = "python scripts/file_hash.py -m update -r results/$PIXI_ENVIRONMENT_NAME"
 depends-on = ["train"]
 
 [tasks.verify-result-hash]
-cmd = "python scripts/file_hash.py -m verify -r results"
+cmd = "python scripts/file_hash.py -m verify -r results/$PIXI_ENVIRONMENT_NAME"
 depends-on = ["train"]
 
 [tasks.experiment]

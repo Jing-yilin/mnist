@@ -126,8 +126,14 @@ def test(model: nn.Module, device: torch.device, test_loader: torch.utils.data.D
 
 def save_results(args: argparse.Namespace, results: Dict[str, Any]) -> str:
     """Save training results to a JSON file"""
-    os.makedirs("results", exist_ok=True)
-    filename = f"results/mnist_results.json"
+    # Get environment type from PIXI_ENVIRONMENT_NAME environment variable
+    env_type = os.environ.get("PIXI_ENVIRONMENT_NAME", "default")
+    is_cuda = torch.cuda.is_available()
+    
+    # Create environment-specific directory
+    result_dir = os.path.join("results", env_type)
+    os.makedirs(result_dir, exist_ok=True)
+    filename = os.path.join(result_dir, "mnist_results.json")
     
     # Add training parameters to results
     results["parameters"] = {
@@ -136,8 +142,19 @@ def save_results(args: argparse.Namespace, results: Dict[str, Any]) -> str:
         "epochs": args.epochs,
         "learning_rate": args.lr,
         "gamma": args.gamma,
-        "seed": args.seed
+        "seed": args.seed,
+        "environment": env_type,
+        "cuda_available": is_cuda
     }
+    
+    # Add additional CUDA information if available
+    if is_cuda:
+        results["cuda_info"] = {
+            "cuda_version": torch.version.cuda,
+            "cudnn_version": torch.backends.cudnn.version() if hasattr(torch.backends.cudnn, "version") else "N/A",
+            "device_name": torch.cuda.get_device_name(0),
+            "device_count": torch.cuda.device_count()
+        }
     
     with open(filename, 'w') as f:
         json.dump(results, f, indent=2)
@@ -180,8 +197,11 @@ def main():
     # Set MLflow tracking URI
     mlflow.set_tracking_uri(args.mlflow_tracking_uri)
     
-    # Start MLflow run
-    with mlflow.start_run():
+    # Get environment type from PIXI_ENVIRONMENT_NAME environment variable
+    env_type = os.environ.get("PIXI_ENVIRONMENT_NAME", "default")
+    
+    # Start MLflow run with environment name in the run name
+    with mlflow.start_run(run_name=f"mnist_training_{env_type}"):
         # Determine device to use (CUDA, MPS, or CPU)
         use_cuda = not args.no_cuda and torch.cuda.is_available()
         use_mps = not args.no_mps and torch.backends.mps.is_available()
@@ -201,7 +221,8 @@ def main():
             "learning_rate": args.lr,
             "gamma": args.gamma,
             "seed": args.seed,
-            "device": str(device)
+            "device": str(device),
+            "environment": env_type
         })
         
         # Set all random seeds for reproducibility
@@ -263,15 +284,21 @@ def main():
         # Save model if requested
         model_path = None
         if args.save_model:
-            os.makedirs("models", exist_ok=True)
-            model_path = f"models/mnist_cnn.pt"
+            # Get environment type from PIXI_ENVIRONMENT_NAME environment variable
+            env_type = os.environ.get("PIXI_ENVIRONMENT_NAME", "default")
+            
+            # Create environment-specific directory for models
+            model_dir = os.path.join("models", env_type)
+            os.makedirs(model_dir, exist_ok=True)
+            
+            model_path = os.path.join(model_dir, "mnist_cnn.pt")
             torch.save(model.state_dict(), model_path)
             print(f"💾 [MODEL] Model saved to {model_path}")
             
             # Log model to MLflow
             mlflow.pytorch.log_model(
                 pytorch_model=model,
-                artifact_path="model"
+                artifact_path=f"model/{env_type}"
             )
         
         # Save results and print final summary
