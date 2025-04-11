@@ -236,8 +236,19 @@ def main():
         optimizer = optim.Adadelta(model.parameters(), lr=args.lr)
         scheduler = StepLR(optimizer, step_size=1, gamma=args.gamma)
         
-        # Log model architecture
-        mlflow.log_dict(model.state_dict(), "model_architecture.json")
+        # Log model architecture as a string instead of trying to serialize tensors
+        model_architecture = {
+            'name': model.__class__.__name__,
+            'layers': {
+                'conv1': f"Conv2d(1, 32, kernel_size=(3, 3), stride=(1, 1))",
+                'conv2': f"Conv2d(32, 64, kernel_size=(3, 3), stride=(1, 1))",
+                'dropout1': "Dropout(p=0.25)",
+                'dropout2': "Dropout(p=0.5)",
+                'fc1': "Linear(in_features=9216, out_features=128)",
+                'fc2': "Linear(in_features=128, out_features=10)"
+            }
+        }
+        mlflow.log_dict(model_architecture, "model_architecture.json")
         
         # Training loop
         for epoch in range(1, args.epochs + 1):
