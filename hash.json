@@ -38,5 +38,13 @@
   "results/mps/mnist_results.json": {
     "hash": "9e7f92a16fc4c69151d724421efd4289070d5651f1b133e494fd7f451b122c5a",
     "algorithm": "sha256"
+  },
+  "results/cpu/mnist_test_results.json": {
+    "hash": "d90305656f2d2c5e617e76a78957ee9e7e7a75d0e05cacad03838006ff66ad58",
+    "algorithm": "sha256"
+  },
+  "results/mps/mnist_test_results.json": {
+    "hash": "5150fa584073e0d9d41f1d4ba7d0d4a8c0696c7cf7e6b533193346867d65a337",
+    "algorithm": "sha256"
   }
 }

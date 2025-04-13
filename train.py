@@ -165,7 +165,7 @@ def save_results(args: argparse.Namespace, results: Dict[str, Any]) -> str:
 
 def main():
     # Training settings
-    parser = argparse.ArgumentParser(description='PyTorch MNIST Example')
+    parser = argparse.ArgumentParser(description='PyTorch MNIST Training')
     parser.add_argument('--batch-size', type=int, default=64, metavar='N',
                         help='input batch size for training (default: 64)')
     parser.add_argument('--test-batch-size', type=int, default=1000, metavar='N',
@@ -274,6 +274,7 @@ def main():
         # Training loop
         for epoch in range(1, args.epochs + 1):
             train(args, model, device, train_loader, optimizer, epoch, results)
+            # Evaluate during training
             test(model, device, test_loader, results, epoch)
             scheduler.step()
 
@@ -294,6 +295,7 @@ def main():
             model_path = os.path.join(model_dir, "mnist_cnn.pt")
             torch.save(model.state_dict(), model_path)
             print(f"💾 [MODEL] Model saved to {model_path}")
+            print(f"💡 [TIP] To test this model, run: pixi run test-model")
             
             # Log model to MLflow
             mlflow.pytorch.log_model(

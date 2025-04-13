@@ -1,0 +1,15 @@
+{
+  "test_result": {
+    "loss": 0.027648895990848542,
+    "accuracy": 99.11,
+    "correct": 9911,
+    "total": 10000
+  },
+  "parameters": {
+    "test_batch_size": 1000,
+    "seed": 1,
+    "environment": "cpu",
+    "cuda_available": false,
+    "model_path": "models/cpu/mnist_cnn.pt"
+  }
+}
