@@ -79,35 +79,6 @@ depends-on = [
     "verify-result-hash",
 ]
 
-[tasks.verify-windows]
-cmd = "python scripts/platform_verification.py log --message 'Windows verification completed successfully'"
-depends-on = ["reproduction"]
-
-[tasks.verify-linux]
-cmd = "python scripts/platform_verification.py log --message 'Linux verification completed successfully'"
-depends-on = ["reproduction"]
-
-[tasks.verify-macos]
-cmd = "python scripts/platform_verification.py log --message 'macOS verification completed successfully'"
-depends-on = ["reproduction"]
-
-[tasks.verify-linux-cuda]
-cmd = "python scripts/platform_verification.py log --message 'Linux CUDA verification completed successfully'"
-depends-on = ["reproduction"]
-
-[tasks.multiplatform-verify]
-depends-on = [
-    "verify-windows",
-    "verify-linux",
-    "verify-macos",
-    "verify-linux-cuda",
-]
-
-[tasks.create-verification-report]
-cmd = "python scripts/platform_verification.py report --output verification_report.md"
-depends-on = ["multiplatform-verify"]
-
-
 [feature.cpu]
 platforms = ["win-64", "linux-64", "osx-64", "osx-arm64"]
 
