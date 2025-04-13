@@ -46,5 +46,9 @@
   "results/mps/mnist_test_results.json": {
     "hash": "5150fa584073e0d9d41f1d4ba7d0d4a8c0696c7cf7e6b533193346867d65a337",
     "algorithm": "sha256"
+  },
+  "results/cuda/mnist_test_results.json": {
+    "hash": "21b5b5a3c1d7a9ca6bd96370efc72768ed60e9bdb03202b978da0fcf7e0644ef",
+    "algorithm": "sha256"
   }
 }
