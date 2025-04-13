@@ -7,7 +7,14 @@ version = "0.1.0"
 
 [environments]
 default = { solve-group = "default" }
+cpu = { solve-group = "cpu", features = ["cpu"] }
 cuda = { solve-group = "cuda", features = ["cuda"] }
+mps = { solve-group = "mps", features = ["mps"] }
+
+[feature.cpu]
+platforms = ["win-64", "linux-64", "osx-64", "osx-arm64"]
+tasks.train = { cmd = "python main.py --save-model --no-cuda --no-mps" }
+
 
 [feature.cuda]
 dependencies = { cuda = ">=12.0", cudnn = ">=9.8.0" }
@@ -17,6 +24,11 @@ channels = [
     "nvidia",
     { channel = "pytorch", priority = -1 },
 ] # Results in:  ["nvidia", "conda-forge", "pytorch"] when the default is `conda-forge`
+tasks.train = { cmd = "python main.py --save-model" }
+
+[feature.mps]
+platforms = ["osx-arm64"]
+tasks.train = { cmd = "python main.py --save-model --no-cuda" }
 
 
 [dependencies]

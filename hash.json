@@ -15,20 +15,28 @@
     "hash": "f7ae60f92e00ec6debd23a6088c31dbd2371eca3ffa0defaefb259924204aec6",
     "algorithm": "sha256"
   },
-  "models/default/mnist_cnn.pt": {
-    "hash": "22a608a5813fd071510303e4cd1486817e26ff390e088f8c81d2c8b7d685e722",
-    "algorithm": "sha256"
-  },
-  "results/default/mnist_results.json": {
-    "hash": "afa3e53c709f8b699178632f571892950bd991f21ecfb2cff316a57e6e1f209a",
-    "algorithm": "sha256"
-  },
   "models/cuda/mnist_cnn.pt": {
     "hash": "e435a6dff82a302959f7d1b19fd98c21048f8ad592eb7ae57827345e32f03f87",
     "algorithm": "sha256"
   },
   "results/cuda/mnist_results.json": {
     "hash": "5e4a9f6f6cab931fa74fe4a538716690871101687012cbed73dd26ad22b41477",
+    "algorithm": "sha256"
+  },
+  "models/cpu/mnist_cnn.pt": {
+    "hash": "29a4cd8880afae958636cb2f4cf567c94b72c1c3597c2c00b9f4a51bd4e869e1",
+    "algorithm": "sha256"
+  },
+  "results/cpu/mnist_results.json": {
+    "hash": "9c1b00998c42e97eee302f8860b27b9dc1a11306d1bf4bd1460ec5885c818e2f",
+    "algorithm": "sha256"
+  },
+  "models/mps/mnist_cnn.pt": {
+    "hash": "22a608a5813fd071510303e4cd1486817e26ff390e088f8c81d2c8b7d685e722",
+    "algorithm": "sha256"
+  },
+  "results/mps/mnist_results.json": {
+    "hash": "9e7f92a16fc4c69151d724421efd4289070d5651f1b133e494fd7f451b122c5a",
     "algorithm": "sha256"
   }
 }
