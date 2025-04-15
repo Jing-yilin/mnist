@@ -39,24 +39,14 @@ train-model = { cmd = "python train.py --save-model" }
 # Run with: pixi run test-model
 test-model = { cmd = "python test.py --model-path models/$PIXI_ENVIRONMENT_NAME/mnist_cnn.pt" }
 
-# Documentation tasks (requires Quarto: https://quarto.org/docs/get-started/)
-# Main documentation preview and rendering
-quarto-preview = { cmd = "cd docs && quarto preview" }
-quarto-render = { cmd = "cd docs && quarto render" }
-quarto-publish = { cmd = "cd docs && quarto publish gh-pages --no-browser --output-dir _output" }
-
-# Project website
-quarto-preview-project = { cmd = "cd docs/project-page && quarto preview" }
-quarto-render-project = { cmd = "cd docs/project-page && quarto render" }
-quarto-publish-project = { cmd = "cd docs/project-page && quarto publish gh-pages --no-browser --output-dir _output" }
-
-# ArXiv article
-quarto-preview-arxiv = { cmd = "cd docs/arxiv-article && quarto preview" }
-quarto-render-arxiv = { cmd = "cd docs/arxiv-article && quarto render" }
-
-# Render all documentation
-quarto-render-all = { cmd = "cd docs && quarto render && cd project-page && quarto render && cd ../arxiv-article && quarto render" }
-
+docs = "cd docs; quarto render"
+install-quarto-extensions = '''
+cd docs;
+quarto add quarto-ext/fontawesome;
+quarto install extension grantmcdermott/quarto-revealjs-clean;
+quarto install extension mikemahoney218/quarto-arxiv;
+quarto install tinytex;
+'''
 
 [tasks.update-data-hash]
 cmd = "python scripts/file_hash.py -m update -r -p \"*.gz\" data"

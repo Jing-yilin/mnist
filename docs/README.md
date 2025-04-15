@@ -1,77 +1,84 @@
-# MNIST Neural Network Documentation
+# MNIST Training Experiment Documentation
 
-This directory contains two separate documentation projects built with Quarto:
+This directory contains the documentation for the MNIST Training Experiment project.
 
-## 1. Project Page (`project-page/`)
+## Documentation Structure
 
-An interactive website for demonstrating the MNIST neural network training and inference. It includes:
+The documentation is organized into the following sections:
 
-- Interactive visualizations of the training process
-- A drawing tool to test the model in real-time
-- Detailed methodology explanations
-- Visual exploration of model internals (weights, activations)
+- **Main Documentation**: General information, usage instructions, and API reference
+- **Project Page**: A showcase website for the project
+- **arXiv Article**: A research paper explaining the approach and findings
 
-**To build and serve the project page:**
+## Building Documentation Locally
+
+### Prerequisites
+
+- [Quarto](https://quarto.org/docs/get-started/) (v1.3.0 or higher)
+- Python 3.10 or higher
+- Required Python packages: jupyter, matplotlib, pandas, numpy
+
+### Installing Quarto Extensions
+
+Before building the documentation, install the required Quarto extensions:
 
 ```bash
-cd project-page
-quarto preview
+cd docs
+quarto add quarto-ext/fontawesome
+quarto add grantmcdermott/quarto-revealjs-clean
+quarto add mikemahoney218/quarto-arxiv
 ```
 
-To build for deployment:
+### Building the Documentation
+
+To build the main documentation:
 
 ```bash
-cd project-page
+cd docs
 quarto render
 ```
 
-## 2. ArXiv Article (`arxiv-article/`)
+The output will be available in the `_output` directory.
 
-A research article formatted for submission to arXiv, documenting our neural network training experiments on MNIST. It includes:
+### Building the Project Page
 
-- Comprehensive methodology description
-- Experimental results and analysis
-- Mathematical formulations
-- Citations and references
-
-**To build the article:**
+To build the project showcase page:
 
 ```bash
-cd arxiv-article
+cd docs/project-page
 quarto render
 ```
 
-This will generate both PDF (for arXiv submission) and HTML versions.
+The output will be available in the `_site` directory.
 
-## Requirements
+### Building the arXiv Article
 
-- [Quarto](https://quarto.org/) (1.3.0+)
-- Python 3.8+ with:
-  - matplotlib
-  - numpy
-  - tensorflow (for code execution)
-- LaTeX (for PDF rendering of the arXiv article)
+To build the research paper:
 
-## Directory Structure
-
+```bash
+cd docs/arxiv-article
+quarto render
 ```
-docs/
-├── project-page/           # Interactive website
-│   ├── _quarto.yml         # Quarto configuration
-│   ├── index.qmd           # Homepage
-│   ├── methodology.qmd     # Methods description
-│   ├── results.qmd         # Results page
-│   ├── interactive-demo.qmd # Interactive demo
-│   ├── team.qmd           # Team information
-│   ├── styles.css         # Custom styling
-│   └── assets/            # Images and resources
-│
-├── arxiv-article/          # ArXiv paper
-│   ├── _quarto.yml         # Quarto configuration
-│   ├── index.qmd           # Main article
-│   ├── methods.qmd         # Detailed methods
-│   ├── references.bib      # Bibliography
-│   ├── ieee.csl            # Citation style
-│   └── figures/            # Article figures
-│
-└── README.md               # This file 
+
+The output will be available in the `_site` directory with both PDF and HTML versions.
+
+## Continuous Deployment
+
+The documentation is automatically built and deployed to GitHub Pages when changes are pushed to the `main` branch. The deployment is handled by the GitHub Actions workflow defined in `.github/workflows/docs.yml`.
+
+The published documentation is available at: `https://[username].github.io/mnist/`
+
+## Contributing to Documentation
+
+When contributing to the documentation:
+
+1. Make changes to the relevant Markdown or Quarto files
+2. If adding new sections, update the navigation in `_quarto.yml`
+3. Build and test locally before pushing changes
+4. Push changes to the main branch to trigger automatic deployment
+
+## Documentation Format
+
+The documentation uses [Quarto](https://quarto.org/), a scientific and technical publishing system that supports Markdown, Jupyter notebooks, and more.
+
+For guidance on Quarto syntax and features, refer to the [Quarto documentation](https://quarto.org/docs/guide/). 

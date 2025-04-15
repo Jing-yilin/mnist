@@ -1,25 +1,30 @@
+# Project options - can change the overall project title
+# and the name of the output directory here
+# Uncomment the post-render command to use the 
+# return-to-source post script - see Readme
 project:
-  type: website
-  output-dir: _output
-  title: "MNIST Neural Network Explorer"
+  title: "MNIST Training Experiment"
+  output-dir: "_output"
 
-navbar:
-  background: primary
-  left:
-    - text: "Project Website"
-      href: project-page/index.html
-    - text: "Research Paper"
-      href: arxiv-article/index.html
-  right:
-    - icon: github
-      href: https://github.com/Jing-yilin/mnist
+# options for all formats - suggested not to change
+from: markdown+raw_attribute+raw_tex
+standalone: true
+self-contained: true
+slide-level: 2
 
-page-footer:
-  center: 
-    - text: "© 2025 MNIST Neural Network Explorer"
-
-format:
-  html:
-    theme: cosmo
-    css: styles.css
-    toc: false 
+# Navigation structure
+website:
+  title: "MNIST Training Experiment"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: usage.md
+        text: Usage
+      - href: api.md
+        text: API
+      - href: contributing.md
+        text: Contributing
+    tools:
+      - icon: github
+        href: https://github.com/your-username/mnist

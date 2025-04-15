@@ -110,3 +110,39 @@ mlflow ui --backend-store-uri ./mlruns
 - 使用双精度浮点数
 - 避免依赖特定环境优化的操作
 - 更严格地控制随机种子 
+
+## 文档
+
+本项目提供了全面的文档，包括：
+
+- **主文档**：使用说明、API参考和贡献指南
+- **项目展示页面**：项目特性和结果展示
+- **研究论文**：详细的方法论和实验结果
+
+### 查看在线文档
+
+文档已通过GitHub Pages发布，可以访问：
+https://[username].github.io/mnist/
+
+### 本地构建文档
+
+要在本地构建和查看文档：
+
+```bash
+# 安装Quarto
+# 从 https://quarto.org/docs/get-started/ 下载并安装
+
+# 安装Quarto扩展
+cd docs
+quarto add quarto-ext/fontawesome
+quarto add grantmcdermott/quarto-revealjs-clean
+quarto add mikemahoney218/quarto-arxiv
+
+# 渲染主文档
+quarto render
+
+# 查看生成的文档
+open _output/index.html
+```
+
+更多关于文档的详细说明请参考 [docs/README.md](docs/README.md)。 
