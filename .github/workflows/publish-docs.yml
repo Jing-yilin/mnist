@@ -17,8 +17,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Setup Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Render Quarto Projects
+        run: |
+          cd docs
+          quarto render
+          cd project-page
+          quarto render
+          cd ../arxiv-article
+          quarto render
+
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: docs/_site
+          folder: docs/_output
           branch: gh-pages 

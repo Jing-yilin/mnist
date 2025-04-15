@@ -9,6 +9,7 @@ channels = ["conda-forge", "pytorch"]
 platforms = ["win-64", "linux-64", "osx-64", "osx-arm64"]
 version = "0.1.0"
 
+
 [dependencies]
 python = { version = ">=3.10,<3.13", channel = "conda-forge" }
 pytorch = { version = ">=2.0.0", channel = "pytorch" }
@@ -16,9 +17,15 @@ libjpeg-turbo = { version = ">=3.0.0", channel = "conda-forge" }
 libpng = { version = ">=1.6.0", channel = "conda-forge" }
 torchvision = { version = ">=0.16.0", channel = "pytorch" }
 mlflow = { version = ">=2.8.0", channel = "conda-forge" }
-protobuf = { version = ">=3.19.0,<4.0.0", channel = "conda-forge" }
+protobuf = { version = ">=3.20.0", channel = "conda-forge" }
 pillow = { version = ">=10.0.0", channel = "conda-forge" }
 numpy = { version = ">=1.24.0", channel = "conda-forge" }
+matplotlib = { version = ">=3.7.0", channel = "conda-forge" }
+scikit-learn = { version = ">=1.3.0", channel = "conda-forge" }
+ipykernel = { version = ">=6.25.0", channel = "conda-forge" }
+jupyter = { version = ">=1.0.0", channel = "conda-forge" }
+pandas = { version = ">=2.0.0", channel = "conda-forge" }
+seaborn = { version = ">=0.12.0", channel = "conda-forge" }
 
 [tasks]
 prepare-data = "python scripts/download_data.py"
@@ -31,9 +38,24 @@ clean-all = { depends-on = ["clean-data", "clean-results", "clean-models"] }
 train-model = { cmd = "python train.py --save-model" }
 # Run with: pixi run test-model
 test-model = { cmd = "python test.py --model-path models/$PIXI_ENVIRONMENT_NAME/mnist_cnn.pt" }
+
+# Documentation tasks (requires Quarto: https://quarto.org/docs/get-started/)
+# Main documentation preview and rendering
 quarto-preview = { cmd = "cd docs && quarto preview" }
 quarto-render = { cmd = "cd docs && quarto render" }
-quarto-publish = { cmd = "cd docs && quarto publish gh-pages --no-browser" }
+quarto-publish = { cmd = "cd docs && quarto publish gh-pages --no-browser --output-dir _output" }
+
+# Project website
+quarto-preview-project = { cmd = "cd docs/project-page && quarto preview" }
+quarto-render-project = { cmd = "cd docs/project-page && quarto render" }
+quarto-publish-project = { cmd = "cd docs/project-page && quarto publish gh-pages --no-browser --output-dir _output" }
+
+# ArXiv article
+quarto-preview-arxiv = { cmd = "cd docs/arxiv-article && quarto preview" }
+quarto-render-arxiv = { cmd = "cd docs/arxiv-article && quarto render" }
+
+# Render all documentation
+quarto-render-all = { cmd = "cd docs && quarto render && cd project-page && quarto render && cd ../arxiv-article && quarto render" }
 
 
 [tasks.update-data-hash]

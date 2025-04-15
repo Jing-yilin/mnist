@@ -1,0 +1,43 @@
+project:
+  type: manuscript
+  output-dir: _output
+  title: "Neural Network Training Dynamics on MNIST: A Comprehensive Analysis"
+
+format:
+  pdf:
+    documentclass: article
+    classoption: [twocolumn, a4paper]
+    number-sections: true
+    geometry:
+      - margin=1in
+    fontsize: 11pt
+    mainfont: Latin Modern Roman
+    include-in-header:
+      text: |
+        \usepackage{amsmath}
+        \usepackage{amssymb}
+        \usepackage{graphicx}
+        \usepackage{hyperref}
+        \usepackage{algorithm}
+        \usepackage{algorithmic}
+        \usepackage{booktabs}
+        \usepackage{microtype}
+        
+        \hypersetup{
+          colorlinks=true,
+          linkcolor=blue,
+          filecolor=magenta,
+          urlcolor=cyan,
+        }
+        
+        \renewcommand{\vec}[1]{\mathbf{#1}}
+        
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    number-sections: true
+    html-math-method: mathjax
+    
+bibliography: references.bib
+csl: ieee.csl 

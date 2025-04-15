@@ -1,0 +1,65 @@
+---
+title: "MNIST Neural Network Explorer"
+subtitle: "Interactive Exploration of Neural Network Training & Inference"
+format:
+  html:
+    grid:
+      sidebar-width: 300px
+      body-width: 800px
+      margin-width: 300px
+---
+
+:::: {.columns}
+
+::: {.column width="60%"}
+# MNIST Neural Network Explorer
+
+Welcome to our interactive platform for exploring neural network training and inference on the MNIST dataset. This project provides a comprehensive demonstration of machine learning fundamentals through:
+
+- **Interactive visualization** of the training process
+- **Real-time inference** on your own handwritten digits
+- **Detailed analysis** of model performance and behavior
+
+[Get Started with the Demo](interactive-demo.qmd){.btn .btn-primary .btn-lg}
+:::
+
+::: {.column width="40%"}
+![](assets/mnist-preview.png)
+:::
+
+::::
+
+## Project Highlights
+
+::: {.grid}
+
+::: {.g-col-4}
+### Visual Learning
+Observe how neural networks learn patterns through animated visualizations of the training process.
+:::
+
+::: {.g-col-4}
+### Model Transparency
+Explore weight distributions and activation patterns to understand how the model makes decisions.
+:::
+
+::: {.g-col-4}
+### Performance Analysis
+Interactive charts showing accuracy, loss curves, and confusion matrices for model evaluation.
+:::
+
+:::
+
+## Recent Updates
+
+- Added real-time weight visualization during training
+- Implemented batch normalization for improved convergence
+- Enhanced interactive demo with predictions explanation
+
+```{python}
+#| echo: false
+#| fig-cap: "Sample MNIST digits with model predictions"
+
+# Placeholder for a Python figure that will be generated
+# The actual content will come from your project's code
+``` 

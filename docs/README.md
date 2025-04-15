@@ -1,84 +1,77 @@
-# MNIST Data Exploration Project
+# MNIST Neural Network Documentation
 
-This directory contains MNIST dataset exploration and model analysis documentation created using Quarto.
+This directory contains two separate documentation projects built with Quarto:
 
-## File Structure
+## 1. Project Page (`project-page/`)
 
-- `_quarto.yml` - Quarto project configuration file
-- `index.qmd` - Project homepage
-- `data-exploration.qmd` - MNIST dataset exploration analysis
-- `model-analysis.qmd` - Training model performance analysis
-- `styles.css` - Custom stylesheet
+An interactive website for demonstrating the MNIST neural network training and inference. It includes:
 
-## Usage Instructions
+- Interactive visualizations of the training process
+- A drawing tool to test the model in real-time
+- Detailed methodology explanations
+- Visual exploration of model internals (weights, activations)
 
-### Prerequisites
-
-Before using, please ensure you have installed the required dependencies:
+**To build and serve the project page:**
 
 ```bash
-# Install project dependencies
-pixi install
-
-# Install Quarto (if not already installed)
-# Please download and install from the official website according to your system: https://quarto.org/docs/get-started/
-
-# Manually install Python packages required for Quarto documents (in the pixi environment)
-pip install jupyter ipykernel matplotlib pandas scikit-learn seaborn
+cd project-page
+quarto preview
 ```
 
-### Preparing Data and Models
-
-Before viewing the Quarto documentation, you need to prepare the data and train the model:
+To build for deployment:
 
 ```bash
-# Download data
-pixi run prepare-data
-
-# Train model
-pixi run train-model
-
-# Test model
-pixi run test-model
+cd project-page
+quarto render
 ```
 
-### Preview Quarto Documents
+## 2. ArXiv Article (`arxiv-article/`)
 
-Use the following command to start the Quarto preview server:
+A research article formatted for submission to arXiv, documenting our neural network training experiments on MNIST. It includes:
+
+- Comprehensive methodology description
+- Experimental results and analysis
+- Mathematical formulations
+- Citations and references
+
+**To build the article:**
 
 ```bash
-pixi run quarto-preview
+cd arxiv-article
+quarto render
 ```
 
-This will start a local server and automatically open the document preview in your browser. The preview will update automatically when you modify Quarto files.
+This will generate both PDF (for arXiv submission) and HTML versions.
 
-### Render Quarto Documents
+## Requirements
 
-To render Quarto documents as a static HTML website, run:
+- [Quarto](https://quarto.org/) (1.3.0+)
+- Python 3.8+ with:
+  - matplotlib
+  - numpy
+  - tensorflow (for code execution)
+- LaTeX (for PDF rendering of the arXiv article)
 
-```bash
-pixi run quarto-render
+## Directory Structure
+
 ```
-
-The rendered files will be saved in the `_site` directory.
-
-### Publish Quarto Documents
-
-If you want to publish the documentation to GitHub Pages or other supported platforms:
-
-```bash
-pixi run quarto-publish
-```
-
-## Customization and Extension
-
-You can customize and extend this project by editing the following files:
-
-- Modify `_quarto.yml` to change the website theme and navigation
-- Edit `.qmd` files to add new analysis content
-- Customize styles in `styles.css`
-
-## Notes
-
-- This Quarto project depends on MNIST data and trained models
-- Relative paths in code blocks are relative to the docs directory 
+docs/
+├── project-page/           # Interactive website
+│   ├── _quarto.yml         # Quarto configuration
+│   ├── index.qmd           # Homepage
+│   ├── methodology.qmd     # Methods description
+│   ├── results.qmd         # Results page
+│   ├── interactive-demo.qmd # Interactive demo
+│   ├── team.qmd           # Team information
+│   ├── styles.css         # Custom styling
+│   └── assets/            # Images and resources
+│
+├── arxiv-article/          # ArXiv paper
+│   ├── _quarto.yml         # Quarto configuration
+│   ├── index.qmd           # Main article
+│   ├── methods.qmd         # Detailed methods
+│   ├── references.bib      # Bibliography
+│   ├── ieee.csl            # Citation style
+│   └── figures/            # Article figures
+│
+└── README.md               # This file 

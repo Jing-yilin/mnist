@@ -1,30 +1,90 @@
 ---
-title: "MNIST Data Exploration"
-author: "Data Science Team"
-date: last-modified
+title: "MNIST Neural Network Explorer"
+format:
+  html:
+    css: styles.css
+    toc: false
+    page-layout: full
 ---
 
-# Welcome to the MNIST Data Exploration Project
+::: {.column-page}
 
-This website is a tool for MNIST data exploration and model analysis created with Quarto. Here, we will:
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center mb-5">
+      <h1 class="display-4">MNIST Neural Network Explorer</h1>
+      <p class="lead">A Cross-Platform for Deep Learning and Computational Science</p>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-6 mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h2 class="card-title">Project Website</h2>
+          <p class="card-text">
+            Interactive website featuring MNIST dataset exploration, neural network training visualization, and model analysis tools.
+            Provides intuitive charts and interactive demos to help understand machine learning principles.
+          </p>
+          <ul>
+            <li>Dataset characteristic analysis</li>
+            <li>Model architecture and training methodology</li>
+            <li>Training results visualization</li>
+            <li>Interactive handwritten digit recognition</li>
+          </ul>
+          <a href="project-page/index.html" class="btn btn-primary">Browse Project Website</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-6 mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h2 class="card-title">Research Paper</h2>
+          <p class="card-text">
+            Research paper based on MNIST experiments, documenting neural network performance on handwritten digit recognition tasks.
+            Formatted in arXiv style, suitable for academic communication and publication.
+          </p>
+          <ul>
+            <li>Detailed experimental methods and theoretical foundations</li>
+            <li>Systematic model evaluation and analysis</li>
+            <li>Weight dynamics analysis during training</li>
+            <li>Complete references and citations</li>
+          </ul>
+          <a href="arxiv-article/index.html" class="btn btn-primary">Read Research Paper</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">About the Project</h3>
+          <p class="card-text">
+            This project is a neural network training and analysis platform based on the MNIST dataset, demonstrating how to present computational science experimental results in multiple formats.
+            The project uses PyTorch to build models and Quarto to generate interactive documentation and scientific papers. The complete code is hosted on GitHub.
+          </p>
+          <p>
+            <strong>Key Features:</strong>
+          </p>
+          <ul>
+            <li>Reproducible experimental environment based on Pixi</li>
+            <li>Detailed code documentation and comments</li>
+            <li>Multi-platform support (CPU/CUDA/MPS)</li>
+            <li>Complete training and evaluation workflow</li>
+          </ul>
+          <div class="text-center mt-4">
+            <a href="https://github.com/Jing-yilin/mnist" class="btn btn-secondary">View GitHub Source Code</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-- Explore the characteristics and distribution of the MNIST dataset
-- Analyze trained model performance
-- Visualize prediction results
-
-## Project Overview
-
-MNIST is a handwritten digit recognition dataset containing:
-
-- 60,000 training images
-- 10,000 test images
-- Each image is a 28x28 pixel grayscale image
-- 10 classes (digits 0-9)
-
-## Navigation
-
-- [Data Exploration](data-exploration.qmd): View statistical information and visual analysis of the MNIST dataset
-- [Model Analysis](model-analysis.qmd): Analyze trained model performance and results
+:::
 
 ```{python}
 #| echo: false

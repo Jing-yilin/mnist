@@ -1,28 +1,25 @@
 project:
   type: website
-  output-dir: _site
-  title: "MNIST Data Explorer"
-  render:
-    - "*.qmd"
-  resources:
-    - "*.png"
-    - "*.jpg"
+  output-dir: _output
+  title: "MNIST Neural Network Explorer"
 
-website:
-  title: "MNIST Data Explorer"
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - href: data-exploration.qmd
-        text: Data Exploration
-      - href: model-analysis.qmd
-        text: Model Analysis
-  repo-url: https://github.com/Jing-yilin/mnist
-  repo-actions: [edit, issue]
+navbar:
+  background: primary
+  left:
+    - text: "Project Website"
+      href: project-page/index.html
+    - text: "Research Paper"
+      href: arxiv-article/index.html
+  right:
+    - icon: github
+      href: https://github.com/Jing-yilin/mnist
+
+page-footer:
+  center: 
+    - text: "© 2025 MNIST Neural Network Explorer"
 
 format:
   html:
     theme: cosmo
     css: styles.css
-    toc: true 
+    toc: false 
