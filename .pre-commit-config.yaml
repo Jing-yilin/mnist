@@ -1,0 +1,9 @@
+repos:
+  - repo: local
+    hooks:
+      - id: pre-render-docs
+        name: Pre-render documentation notebooks
+        entry: pixi run pre-render-docs
+        language: system
+        files: ^docs/.*\.(qmd|ipynb)$
+        pass_filenames: false 

@@ -26,6 +26,7 @@ ipykernel = { version = ">=6.25.0", channel = "conda-forge" }
 jupyter = { version = ">=1.0.0", channel = "conda-forge" }
 pandas = { version = ">=2.0.0", channel = "conda-forge" }
 seaborn = { version = ">=0.12.0", channel = "conda-forge" }
+pre-commit = { version = ">=3.5.0", channel = "conda-forge" }
 
 [tasks]
 prepare-data = "python scripts/download_data.py"
@@ -40,6 +41,10 @@ train-model = { cmd = "python train.py --save-model" }
 test-model = { cmd = "python test.py --model-path models/$PIXI_ENVIRONMENT_NAME/mnist_cnn.pt" }
 
 docs = "cd docs; quarto render"
+pre-render-docs = '''
+cd docs
+jupyter nbconvert --to notebook --execute --inplace **/*.ipynb
+'''
 install-quarto-extensions = '''
 cd docs;
 quarto add quarto-ext/fontawesome;
