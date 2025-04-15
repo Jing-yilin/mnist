@@ -48,6 +48,20 @@ quarto install extension mikemahoney218/quarto-arxiv;
 quarto install tinytex;
 '''
 
+# Services
+start-mlflow = { cmd = "mlflow ui --port 5000" }
+serve-project-page = { cmd = "cd docs/project-page && quarto preview" }
+serve-docs = { cmd = "cd docs && quarto preview" }
+
+# Launch all services at once
+[tasks.serve-all]
+cmd = '''
+#!/bin/bash
+mlflow ui --port 5000 &
+cd docs && quarto preview &
+wait
+'''
+
 [tasks.update-data-hash]
 cmd = "python scripts/file_hash.py -m update -r -p \"*.gz\" data"
 depends-on = ["prepare-data"]

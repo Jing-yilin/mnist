@@ -1,0 +1,17 @@
+project:
+  title: "MNIST Training: arXiv Article"
+  type: website
+  output-dir: "../_output/arxiv-article"
+  preview:
+    port: 8080
+    browser: false
+    watch-inputs: true
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+bibliography: bibliography.bib
+csl: ieee.csl 

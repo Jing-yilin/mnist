@@ -1,0 +1,24 @@
+project:
+  title: "MNIST Training Experiment: Project Page"
+  type: website
+  output-dir: "../_output/project-page"
+  preview:
+    port: 8000
+    browser: false
+    watch-inputs: true
+
+format:
+  html:
+    theme: none
+    css: 
+      - css/index.css
+    page-layout: full
+    toc: false
+    include-in-header:
+      - text: |
+          <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
+          <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+          <script src="./js/index.js"></script>
+          <script src="https://kit.fontawesome.com/afd8234139.js" crossorigin="anonymous"></script>
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"> 

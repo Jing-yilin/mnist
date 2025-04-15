@@ -5,6 +5,15 @@
 project:
   title: "MNIST Training Experiment"
   output-dir: "_output"
+  type: website
+  preview:
+    port: 8888
+    browser: false
+
+# 包含子项目配置
+resources:
+  - "project-page/**/*"
+  - "arxiv-article/**/*"
 
 # options for all formats - suggested not to change
 from: markdown+raw_attribute+raw_tex
@@ -19,12 +28,14 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: usage.md
-        text: Usage
-      - href: api.md
-        text: API
       - href: contributing.md
         text: Contributing
+      - text: "Demo Pages"
+        menu:
+          - text: "Project Page"
+            href: "project-page/index.html"
+          - text: "arXiv Article"
+            href: "arxiv-article/arxiv-article.html"
     tools:
       - icon: github
-        href: https://github.com/your-username/mnist
+        href: https://github.com/Jing-yilin/mnist

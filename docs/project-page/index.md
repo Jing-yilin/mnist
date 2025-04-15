@@ -1,15 +1,5 @@
 ---
-title: "MNIST Training Experiment: A Reproducible PyTorch Implementation"
-format: html
-page-layout: full
-css:
-  - https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro
-  - https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css
-  - ./css/index.css
-include-in-header:
-  - text: |
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-      <script src="./js/index.js"></script>
+title: "MNIST Training Experiment"
 ---
 
 ::: {.hero}
