@@ -6,6 +6,8 @@ on:
     paths:
       - 'docs/**'
       - '.github/workflows/docs.yml'
+      - 'pixi.lock'
+      - 'pixi.toml'
   workflow_dispatch:  # Allow manual triggering
 
 jobs:
