@@ -1,8 +1,8 @@
 {
   "test_result": {
-    "loss": 0.02925676670074463,
-    "accuracy": 98.99,
-    "correct": 9899,
+    "loss": 0.029542309141159056,
+    "accuracy": 99.01,
+    "correct": 9901,
     "total": 10000
   },
   "parameters": {

@@ -32,11 +32,11 @@
     "algorithm": "sha256"
   },
   "models/mps/mnist_cnn.pt": {
-    "hash": "22a608a5813fd071510303e4cd1486817e26ff390e088f8c81d2c8b7d685e722",
+    "hash": "42398416c446daca1cd2627dd2c9a6f44fec20de3c3b1731fda9d66eae15a582",
     "algorithm": "sha256"
   },
   "results/mps/mnist_results.json": {
-    "hash": "9e7f92a16fc4c69151d724421efd4289070d5651f1b133e494fd7f451b122c5a",
+    "hash": "d580246ad3b296b5fae25daab0f7a1f967004ba2aac7b8a9556ef439159afb89",
     "algorithm": "sha256"
   },
   "results/cpu/mnist_test_results.json": {
@@ -44,7 +44,7 @@
     "algorithm": "sha256"
   },
   "results/mps/mnist_test_results.json": {
-    "hash": "5150fa584073e0d9d41f1d4ba7d0d4a8c0696c7cf7e6b533193346867d65a337",
+    "hash": "0ea4cd60079e3074a2f296ea67dd917c25483bd05574ad7626e8ad7ecd6f1299",
     "algorithm": "sha256"
   },
   "results/cuda/mnist_test_results.json": {
