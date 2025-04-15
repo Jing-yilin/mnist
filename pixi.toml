@@ -33,7 +33,7 @@ train-model = { cmd = "python train.py --save-model" }
 test-model = { cmd = "python test.py --model-path models/$PIXI_ENVIRONMENT_NAME/mnist_cnn.pt" }
 quarto-preview = { cmd = "cd docs && quarto preview" }
 quarto-render = { cmd = "cd docs && quarto render" }
-quarto-publish = { cmd = "cd docs && quarto publish gh-pages --render --no-browser" }
+quarto-publish = { cmd = "cd docs && quarto publish gh-pages --no-browser" }
 
 
 [tasks.update-data-hash]
