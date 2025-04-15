@@ -14,17 +14,17 @@ jobs:
       contents: write  # Required for pushing to gh-pages branch
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.1.1
         with:
           fetch-depth: 0  # Required for correctly handling git history
       
       - name: Set up Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
+        uses: quarto-dev/quarto-actions/setup@v2.0.0
         with:
           version: 1.3.450  # Specify the Quarto version
       
       - name: Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5.0.0
         with:
           python-version: '3.10'
           cache: 'pip'
@@ -35,10 +35,11 @@ jobs:
           pip install jupyter matplotlib pandas numpy
 
       - name: Setup Pixi
-        uses: prefix-dev/setup-pixi@v0.4.1
+        uses: prefix-dev/setup-pixi@v0.5.1
         with:
           pixi-version: v0.44.0
       
+      # Install Quarto extensions
       - name: Install Quarto extensions
         run: |
           cd docs
@@ -56,7 +57,7 @@ jobs:
       - name: Render project page
         run: |
           cd docs/project-page
-          quarto render
+          quarto render index.md --to html
 
       # Render the arXiv article
       - name: Render arXiv article
@@ -69,14 +70,10 @@ jobs:
         run: |
           mkdir -p _site
           cp -r docs/_output/* _site/
-          mkdir -p _site/project-page
-          cp -r docs/project-page/_site/* _site/project-page/
-          mkdir -p _site/arxiv-article
-          cp -r docs/arxiv-article/_site/* _site/arxiv-article/
       
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: JamesIves/github-pages-deploy-action@v4.5.0
         with:
           folder: _site
           branch: gh-pages
@@ -84,7 +81,7 @@ jobs:
       
       # Create artifact with documentation files
       - name: Archive documentation
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4.3.1
         with:
           name: documentation
           path: _site
