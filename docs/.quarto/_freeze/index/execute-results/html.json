@@ -1,0 +1,12 @@
+{
+  "hash": "e280b345fdff7a8d0e29216df73569c3",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"MNIST Data Exploration\"\nauthor: \"Data Science Team\"\ndate: last-modified\n---\n\n\n\n\n# Welcome to the MNIST Data Exploration Project\n\nThis website is a tool for MNIST data exploration and model analysis created with Quarto. Here, we will:\n\n- Explore the characteristics and distribution of the MNIST dataset\n- Analyze trained model performance\n- Visualize prediction results\n\n## Project Overview\n\nMNIST is a handwritten digit recognition dataset containing:\n\n- 60,000 training images\n- 10,000 test images\n- Each image is a 28x28 pixel grayscale image\n- 10 classes (digits 0-9)\n\n## Navigation\n\n- [Data Exploration](data-exploration.qmd): View statistical information and visual analysis of the MNIST dataset\n- [Model Analysis](model-analysis.qmd): Analyze trained model performance and results\n\n::: {#26c68e43 .cell execution_count=1}\n\n::: {.cell-output .cell-output-stdout}\n```\nQuarto and Python integration example\n```\n:::\n:::\n\n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

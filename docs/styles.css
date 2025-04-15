@@ -1,0 +1,27 @@
+/* CSS styles */
+.quarto-title-block .quarto-title-banner {
+  background: #f0f0f0;
+  padding: 1em;
+  border-radius: 5px;
+}
+
+.figure {
+  margin: 1.5em 0;
+  text-align: center;
+}
+
+.cell {
+  margin-bottom: 1em;
+}
+
+.cell-output {
+  padding: 0.5em;
+  background: #f8f8f8;
+  border-radius: 5px;
+}
+
+/* Style for mnist image grid */
+.mnist-grid img {
+  margin: 5px;
+  border: 1px solid #ddd;
+} 
